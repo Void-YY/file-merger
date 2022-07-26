@@ -21,6 +21,7 @@ export default {
   methods: {
     selectedFile(e) {
       let files = e.target.files || e.dataTransfer.files;
+      console.warn(files);
 
       this.fileProcessing(files);
     },
@@ -46,7 +47,7 @@ export default {
         return this.blob;
       };
       var myBlobBuilder = new MyBlobBuilder();
-      files.forEach((e) => {
+      Array.from(files).forEach((e) => {
         myBlobBuilder.append(e);
       });
       saveAs(myBlobBuilder.getBlob(), "test.zip");
